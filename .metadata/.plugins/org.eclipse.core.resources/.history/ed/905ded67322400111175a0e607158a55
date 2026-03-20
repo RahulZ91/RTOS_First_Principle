@@ -1,0 +1,19 @@
+/*
+ * uart.c
+ *
+ *  Created on: Mar 18, 2026
+ *      Author: hp
+ */
+
+#include "uart.h"
+
+void uart_tx_init(void)
+{
+	// clock enable for uart peripheral
+
+	//configure GPIO pins as UART
+
+	// Message to transmit
+
+	// Configure the transmit
+}

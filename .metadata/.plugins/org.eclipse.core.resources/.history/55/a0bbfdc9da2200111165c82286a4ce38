@@ -1,0 +1,28 @@
+/*
+ * led.c
+ *
+ *  Created on: Mar 18, 2026
+ *      Author: hp
+ */
+
+#include "led.h"
+
+void led_init(void)
+{
+
+	// enable the clock for led port(Port A)
+
+	// Set the LED as output - GPIO structure
+
+
+}
+
+void led_on(void)
+{
+	// Set the LED pin HIGH
+}
+
+void led_off(void)
+{
+	// Set the LED pin HIGH
+}
