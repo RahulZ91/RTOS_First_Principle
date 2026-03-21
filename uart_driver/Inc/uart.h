@@ -10,4 +10,6 @@
 
 #include "stm32f4xx.h"
 
+void uart_tx_init(void);
+
 #endif /* UART_H_ */

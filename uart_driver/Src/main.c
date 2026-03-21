@@ -1,14 +1,15 @@
 
 #include "led.h"
+#include "uart.h"
+#include<stdio.h>
+
 int main(void)
 {
 	led_init();
+	uart_tx_init();
 
 	while(1)
 	{
-		led_on();
-		for(int i=0;i<100000;i++){}
-		led_off();
-		for(int j=0;j<100000;j++){}
+		printf("Hello world from Nucleo board \n\r");
 	}
 }
