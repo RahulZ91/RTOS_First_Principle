@@ -1,0 +1,5 @@
+../Src/timebase.c:28:6:timebase_init	1
+../Src/timebase.c:49:6:tick_increment	1
+../Src/timebase.c:56:6:SysTick_Handler	1
+../Src/timebase.c:61:10:get_tick	1
+../Src/timebase.c:71:6:delay	3
