@@ -1,0 +1,34 @@
+typedef : alisaing for a type
+state of thread: running, ready or blocked - how each state is transitiioned into eg: ready to running - but only one thread is in running state at one point in time
+Process: Instance of a program
+Thread: Instance of a task
+threads are subsets of a process
+task === thread (equivalent)
+
+classification of scheduler : 
+static (thread priorities determined before the system runs) vs dynamic(thread priorities decided as the system runs)
+pre-emptive and non-pre emptive
+
+Pre-emption
+1. OS moves a thread from run to ready - a thread itself moves from runnning to blocked if it needs a resources or something to have run before
+2. use of interrupts to pre-empt running thread
+3. pre-emption - fairness to all threads - high prio runs before low prio -
+
+CPU utilisation : % of available CPU cycles used
+Wait time: time waited by a thread in ready queue
+Turnaround time : time to complete each task - minimise this 
+
+scheduler design constraints:
+
+Popular scheduling algorithms:
+First come first serve
+Round robin
+Weighted round robin
+
+First cum first serve
+- non pre-emptive
+- implemented as FIFO queue
+- High wait time as easch task completes and then the CPU is taken over by the next 
+
+
+
