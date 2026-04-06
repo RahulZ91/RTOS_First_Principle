@@ -7,6 +7,7 @@
 C_SRCS += \
 ../Src/led.c \
 ../Src/main.c \
+../Src/osKernel.c \
 ../Src/syscalls.c \
 ../Src/sysmem.c \
 ../Src/timebase.c \
@@ -15,6 +16,7 @@ C_SRCS += \
 OBJS += \
 ./Src/led.o \
 ./Src/main.o \
+./Src/osKernel.o \
 ./Src/syscalls.o \
 ./Src/sysmem.o \
 ./Src/timebase.o \
@@ -23,6 +25,7 @@ OBJS += \
 C_DEPS += \
 ./Src/led.d \
 ./Src/main.d \
+./Src/osKernel.d \
 ./Src/syscalls.d \
 ./Src/sysmem.d \
 ./Src/timebase.d \
@@ -36,7 +39,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/led.cyclo ./Src/led.d ./Src/led.o ./Src/led.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/timebase.cyclo ./Src/timebase.d ./Src/timebase.o ./Src/timebase.su ./Src/uart.cyclo ./Src/uart.d ./Src/uart.o ./Src/uart.su
+	-$(RM) ./Src/led.cyclo ./Src/led.d ./Src/led.o ./Src/led.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/osKernel.cyclo ./Src/osKernel.d ./Src/osKernel.o ./Src/osKernel.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/timebase.cyclo ./Src/timebase.d ./Src/timebase.o ./Src/timebase.su ./Src/uart.cyclo ./Src/uart.d ./Src/uart.o ./Src/uart.su
 
 .PHONY: clean-Src
 

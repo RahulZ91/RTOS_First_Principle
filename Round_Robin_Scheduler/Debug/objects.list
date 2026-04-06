@@ -1,5 +1,6 @@
 "./Src/led.o"
 "./Src/main.o"
+"./Src/osKernel.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"
 "./Src/timebase.o"
