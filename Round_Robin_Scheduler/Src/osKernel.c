@@ -11,6 +11,16 @@
 #define NUM_OF_THREADS 3
 #define STRUCT_SIZE    100 // 100 is 100 4 byte values so 400 bytes
 
+#define BUS_FREQ         16000000
+uint32_t MILI_PRESCALER;            // provides clock in ms
+#define CTRL_ENABLE  (1U<<0)
+#define CTRL_CLKSRC  (1U<<2)
+#define CTRL_TICKINT (1U<<1)
+#define CTRL_CNTFLAG (1U<<16)
+
+#define SYSTICK_RST  0
+#define SYSTICK_VAL 0
+
 struct tcb
 {
 	int32_t *stackPt;
@@ -83,11 +93,31 @@ uint8_t osKernelAddThreads(void (*task0)(void), void (*task1)(void), void (*task
 
 void osKernelInit()
 {
-
+	MILI_PRESCALER = (BUS_FREQ/1000); // 16M is 1s, 16k is 1ms
 }
 
 void osKernelLaunch(uint32_t quanta)
 {
+	//Reset Systick
+	SysTick->CTRL=SYSTICK_RST;
+
+	//Clear Systick with current value as 0
+	SysTick->VAL = SYSTICK_VAL;
+
+	// Load quanta value
+	SysTick->LOAD = (quanta * MILI_PRESCALER) - 1;
+
+	//Set systick to lowest priority
+	NVIC_SetPriority(SysTick_IRQn,15);
+
+	//Enable systick, select internal clock
+	SysTick->CTRL |=CTRL_CLKSRC | CTRL_ENABLE;
+
+	//Enable systick interrupt
+	SysTick->CTRL |=CTRL_TICKINT;
+
+	//Launch scheduler
+
 
 }
 
