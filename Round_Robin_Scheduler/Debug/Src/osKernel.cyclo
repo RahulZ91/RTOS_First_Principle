@@ -1,2 +1,4 @@
 ../Src/osKernel.c:28:6:osKernelStackInit	1
 ../Src/osKernel.c:51:9:osKernelAddThreads	1
+../Src/osKernel.c:84:6:osKernelInit	1
+../Src/osKernel.c:89:6:osKernelLaunch	1

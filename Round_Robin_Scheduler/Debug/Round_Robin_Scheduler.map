@@ -187,12 +187,16 @@ Discarded input sections
                 0x00000000      0x1a0 ./Src/osKernel.o
  .text.osKernelAddThreads
                 0x00000000       0x74 ./Src/osKernel.o
- .debug_info    0x00000000      0x1e9 ./Src/osKernel.o
- .debug_abbrev  0x00000000      0x118 ./Src/osKernel.o
+ .text.osKernelInit
+                0x00000000        0xe ./Src/osKernel.o
+ .text.osKernelLaunch
+                0x00000000       0x14 ./Src/osKernel.o
+ .debug_info    0x00000000      0x21f ./Src/osKernel.o
+ .debug_abbrev  0x00000000      0x130 ./Src/osKernel.o
  .debug_aranges
-                0x00000000       0x28 ./Src/osKernel.o
+                0x00000000       0x38 ./Src/osKernel.o
  .debug_rnglists
-                0x00000000       0x1a ./Src/osKernel.o
+                0x00000000       0x26 ./Src/osKernel.o
  .debug_macro   0x00000000       0xe4 ./Src/osKernel.o
  .debug_macro   0x00000000      0xaea ./Src/osKernel.o
  .debug_macro   0x00000000       0x22 ./Src/osKernel.o
@@ -210,10 +214,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x11f ./Src/osKernel.o
  .debug_macro   0x00000000    0x1675e ./Src/osKernel.o
  .debug_macro   0x00000000       0x6d ./Src/osKernel.o
- .debug_line    0x00000000      0x69c ./Src/osKernel.o
- .debug_str     0x00000000    0x8b280 ./Src/osKernel.o
+ .debug_line    0x00000000      0x6c2 ./Src/osKernel.o
+ .debug_str     0x00000000    0x8b2a3 ./Src/osKernel.o
  .comment       0x00000000       0x44 ./Src/osKernel.o
- .debug_frame   0x00000000       0x5c ./Src/osKernel.o
+ .debug_frame   0x00000000       0xa4 ./Src/osKernel.o
  .ARM.attributes
                 0x00000000       0x34 ./Src/osKernel.o
  .group         0x00000000        0xc ./Src/syscalls.o

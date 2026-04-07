@@ -1,2 +1,4 @@
 ../Src/osKernel.c:28:6:osKernelStackInit	16	static
 ../Src/osKernel.c:51:9:osKernelAddThreads	24	static,ignoring_inline_asm
+../Src/osKernel.c:84:6:osKernelInit	4	static
+../Src/osKernel.c:89:6:osKernelLaunch	16	static

@@ -81,4 +81,14 @@ uint8_t osKernelAddThreads(void (*task0)(void), void (*task1)(void), void (*task
 
 }
 
+void osKernelInit()
+{
+
+}
+
+void osKernelLaunch(uint32_t quanta)
+{
+
+}
+
 
