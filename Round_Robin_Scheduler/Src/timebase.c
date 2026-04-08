@@ -53,11 +53,13 @@ void tick_increment(void)
 	global_current_tick +=tick_frequency;
 }
 
+/*
 void SysTick_Handler()
 {
 	printf("Systick handler invoked \n\r");
 	tick_increment();
 }
+*/
 
 uint32_t get_tick(void)
 {

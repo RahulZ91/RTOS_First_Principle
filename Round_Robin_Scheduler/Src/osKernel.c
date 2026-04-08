@@ -121,4 +121,11 @@ void osKernelLaunch(uint32_t quanta)
 
 }
 
+__attribute__((naked)) void SysTick_Handler()
+{
+	// On the trigger of the ISR we want to suspend the current thread and choose the next thread
+	//Suspend
+	//Disable global interrupts
 
+	//Choose next thread
+}
