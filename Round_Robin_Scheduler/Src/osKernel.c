@@ -126,6 +126,16 @@ __attribute__((naked)) void SysTick_Handler()
 	// On the trigger of the ISR we want to suspend the current thread and choose the next thread
 	//Suspend
 	//Disable global interrupts
+	__asm("CPSID I");// Change processor state, Interrupt disable - No new interrupts can interrupt this code from now on.
+	// Save R4-R11
+	__asm("PUSH {R4-R11}");
+	//Load address of current pt into R0
+	__asm("LDR R0=current_ptr ");
 
+	// Load address in R0 in R1
+	__asm("LDR R1,[R0]");
+
+	//Store cortex M SP at address equals R1 ie save SP into TCB
+	__asm("STR SP,[R1]");
 	//Choose next thread
 }
