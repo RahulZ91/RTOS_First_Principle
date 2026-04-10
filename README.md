@@ -1,4 +1,4 @@
-This project demonstrates the development of a basic RTOS from first principles on the STM32F4 Nucleo-F446RE development board. The goal is to implement core RTOS functionalities and verify timing and task scheduling using both hardware and software outputs.
+The project works on development of a lightweight kernel and explores the different algorithm for a scheduler : round robin, periodic and co-operative scheduling. Other tasks include : development of low level drivers for UART, timebase generation and GPIO.
 
 Hardware:
 Board: STM32F446RE Nucleo
