@@ -121,6 +121,8 @@ void osKernelLaunch(uint32_t quanta)
 
 }
 
+// Saved automatically on the stack : r0,r1,r2,r3,r12,LR,PC,PSR
+// The Systick Handler does the context switch
 __attribute__((naked)) void SysTick_Handler()
 {
 	// On the trigger of the ISR we want to suspend the current thread and choose the next thread
@@ -130,7 +132,7 @@ __attribute__((naked)) void SysTick_Handler()
 	// Save R4-R11
 	__asm("PUSH {R4-R11}");
 	//Load address of current pt into R0
-	__asm("LDR R0=current_ptr ");
+	__asm("LDR R0, =current_ptr ");
 
 	// Load address in R0 in R1
 	__asm("LDR R1,[R0]");
@@ -138,4 +140,21 @@ __attribute__((naked)) void SysTick_Handler()
 	//Store cortex M SP at address equals R1 ie save SP into TCB
 	__asm("STR SP,[R1]");
 	//Choose next thread
+	__asm("LDR R1,[R1,#4]"); // load R1 with value stored the address 4 bytes above R1's address
+
+	//Store R1 at address equal R0 ie current_ptr=R1
+	__asm("STR R1,[R0]");
+
+	//load CortexM SP from address equal R1; ie SP=current_ptr->stackPt
+	__asm("LDR SP,[R1]");
+
+	//Restore the r4-r11
+	__asm("POP {R4-R11}");
+
+	//Enable global interrupts
+	__asm("CPSIE I");
+
+	//Return from exception and restore r0,r1,r2,r3,r12,LR,PC,PSR - this is automatic load
+	__asm("BX LR");
+
 }
