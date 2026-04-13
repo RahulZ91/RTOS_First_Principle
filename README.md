@@ -1,4 +1,4 @@
-The project works on development of a lightweight kernel and explores the different algorithm for a scheduler : round robin, periodic and co-operative scheduling. Other tasks include : development of low level drivers for UART, timebase generation and GPIO.
+The project works on development of a lightweight kernel and explores the different algorithm for a scheduler : round robin, periodic and co-operative scheduling. Other tasks include : development of low level drivers for UART, timebase generation and GPIO, context switch and checking data in registers R0-R12,PC,LR
 
 Hardware:
 Board: STM32F446RE Nucleo
