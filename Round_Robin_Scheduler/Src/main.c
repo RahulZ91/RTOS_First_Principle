@@ -2,44 +2,56 @@
 #include "led.h"
 #include "uart.h"
 #include "timebase.h"
+#include "osKernel.h"
 
 #include<stdio.h>
+
+#define QUANTA 10
 
 void motor_run(void);
 void motor_stop(void);
 void valve_open(void);
 void valve_close(void);
 
-int main_motor()
+typedef uint32_t TaskProfiler;
+TaskProfiler Task0_Profiler,Task1_Profiler,Task2_Profiler; // counter to check if the thread has executed
+
+void task0(void)
 {
 	while(1)
 	{
-		motor_run();
-		delay(1);
-		motor_stop();
-		delay(1);
+		Task0_Profiler++;
 	}
 }
-int main(void)
-{
-	led_init();
-	uart_tx_init();
-	timebase_init();
 
-	main_motor();
+void task1(void)
+{
 	while(1)
 	{
-		printf("A second occurred \n\r");
-		delay(1);
-		led_on();
-		printf("LED on for 5 seconds \n\r");
-		delay(5);
-		led_off();
-		printf("LED switched off after 5 seconds \n\r");
-		printf("Ticks done %ld \n\r",get_tick());
+		Task1_Profiler++;
 	}
 }
 
+void task2(void)
+{
+	while(1)
+	{
+		Task2_Profiler++;
+	}
+}
+
+int main()
+{
+	// Initialise kernel
+	osKernelInit();
+
+	// Add threads
+	osKernelAddThreads(&task0,&task1,&task2);
+
+	// Set quanta for round robin
+	osKernelLaunch(QUANTA);
+
+}
 
 void motor_run(void)
 {
