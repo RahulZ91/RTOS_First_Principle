@@ -158,3 +158,36 @@ __attribute__((naked)) void SysTick_Handler()
 	__asm("BX LR");
 
 }
+
+void osSchedulerLaunch()
+{
+	// Load address of current pt in R0
+	__asm("LDR R0,=current_ptr ");
+
+	//load R2 from address R0 ie R2 equals current pt
+	__asm("LDR R2,[R0]");
+
+	//load Cortex M SP from address equal R2
+	__asm("LDR SP,[R2]");
+
+	//restore the manual registers r4,r5,r6,r7,8,r9,r10,11
+	__asm("POP {R4-R11}");
+
+	//restore r0,r1,r2,r3
+	__asm("POP {R0-R3}");
+
+	//skip LR and PSR
+	__asm("ADD SP,SP,#4");
+
+	//create a new start location by popping LR
+	__asm("POP {LR}");
+
+	// add 4 to SP to move to PSR
+	__asm("ADD SP,SP,#4");
+
+	//enable global interrupt
+	__asm("CPSIE I");
+
+	//return from the exception
+	__asm("BX LR");
+}
