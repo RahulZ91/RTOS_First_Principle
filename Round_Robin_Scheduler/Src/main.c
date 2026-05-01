@@ -42,6 +42,8 @@ void task2(void)
 
 int main()
 {
+	uart_tx_init();
+
 	// Initialise kernel
 	osKernelInit();
 

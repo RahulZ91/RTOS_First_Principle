@@ -3,5 +3,5 @@ F:/Knowledge_Update/workspace_1.19.0/RTOS_FirstPrinciple/led_driver/Driver/CMSIS
 ../Src/osKernel.c:61:9:osKernelAddThreads	1
 ../Src/osKernel.c:94:6:osKernelInit	1
 ../Src/osKernel.c:99:6:osSchedulerLaunch	1
-../Src/osKernel.c:132:6:osKernelLaunch	1
-../Src/osKernel.c:159:29:SysTick_Handler	1
+../Src/osKernel.c:135:6:osKernelLaunch	1
+../Src/osKernel.c:162:29:SysTick_Handler	1

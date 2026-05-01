@@ -38,7 +38,7 @@ int32_t TCB_STACK[NUM_OF_THREADS][STRUCT_SIZE]; // basically mem alocation - 3 t
 void osKernelStackInit(int i)
 {
 	tcbs[i].stackPt = &TCB_STACK[i][STRUCT_SIZE - 16]; // stack pointer
-	TCB_STACK[i][STRUCT_SIZE - 1] = (1<<21); // Set T Bit in PSR
+	TCB_STACK[i][STRUCT_SIZE - 1] = (1<<24); // Set T Bit in PSR
 
 	// Dummy value in  fed in regsiters to verify the value later on in the memory window
 	TCB_STACK[i][STRUCT_SIZE - 3] = 0xAAAAAAAA;
@@ -107,8 +107,11 @@ void osSchedulerLaunch()
 	//load Cortex M SP from address equal R2
 	__asm("LDR SP,[R2]");
 
-	//restore the manual registers r4,r5,r6,r7,8,r9,r10,11
+	//restore the manual registers r4,r5,r6,r7,8,r9,r10,r11
 	__asm("POP {R4-R11}");
+
+	// restore link register
+	__asm("POP {R12}");
 
 	//restore r0,r1,r2,r3
 	__asm("POP {R0-R3}");
