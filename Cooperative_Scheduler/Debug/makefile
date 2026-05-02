@@ -33,34 +33,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Round_Robin_Scheduler
+BUILD_ARTIFACT_NAME := Cooperative_Scheduler
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Round_Robin_Scheduler.elf \
+Cooperative_Scheduler.elf \
 
 MAP_FILES += \
-Round_Robin_Scheduler.map \
+Cooperative_Scheduler.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Round_Robin_Scheduler.list \
+Cooperative_Scheduler.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Round_Robin_Scheduler.elf secondary-outputs
+main-build: Cooperative_Scheduler.elf secondary-outputs
 
 # Tool invocations
-Round_Robin_Scheduler.elf Round_Robin_Scheduler.map: $(OBJS) $(USER_OBJS) F:\Knowledge_Update\workspace_1.19.0\RTOS_FirstPrinciple\Round_Robin_Scheduler\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Round_Robin_Scheduler.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\Knowledge_Update\workspace_1.19.0\RTOS_FirstPrinciple\Round_Robin_Scheduler\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Round_Robin_Scheduler.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Cooperative_Scheduler.elf Cooperative_Scheduler.map: $(OBJS) $(USER_OBJS) F:\Knowledge_Update\workspace_1.19.0\RTOS_FirstPrinciple\Cooperative_Scheduler\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Cooperative_Scheduler.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\Knowledge_Update\workspace_1.19.0\RTOS_FirstPrinciple\Cooperative_Scheduler\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Cooperative_Scheduler.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +69,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Round_Robin_Scheduler.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Round_Robin_Scheduler.list"
+Cooperative_Scheduler.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Cooperative_Scheduler.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Round_Robin_Scheduler.elf Round_Robin_Scheduler.list Round_Robin_Scheduler.map default.size.stdout
+	-$(RM) Cooperative_Scheduler.elf Cooperative_Scheduler.list Cooperative_Scheduler.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

@@ -18,6 +18,9 @@ uint32_t MILI_PRESCALER;            // provides clock in ms
 #define CTRL_TICKINT (1U<<1)
 #define CTRL_CNTFLAG (1U<<16)
 
+#define INTCTRL   (*(volatile uint32_t *)0xE000ED04)
+#define PENDSTSET 26
+
 #define SYSTICK_RST  0
 #define SYSTICK_VAL 0
 
@@ -192,5 +195,15 @@ __attribute__((naked)) void SysTick_Handler()
 
 	//Return from exception and restore r0,r1,r2,r3,r12,LR,PC,PSR - this is automatic load
 	__asm("BX LR");
+
+}
+
+void osThreadYeild(void)
+{
+	// Clear systick current value register
+	SysTick->VAL=0;
+
+	//trigger systick
+	INTCTRL |=PENDSTSET;
 
 }
