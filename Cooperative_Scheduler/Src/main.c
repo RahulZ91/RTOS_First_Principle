@@ -21,6 +21,7 @@ void task0(void)
 	while(1)
 	{
 		Task0_Profiler++;
+		osThreadYeild();
 	}
 }
 
