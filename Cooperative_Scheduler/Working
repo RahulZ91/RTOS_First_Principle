@@ -1,0 +1,59 @@
+🧵 Cooperative Scheduling and osYield()
+Overview
+
+In this system, scheduling follows a cooperative model, where each thread runs until it explicitly yields control of the CPU. The scheduler does not preempt tasks automatically.
+
+A running thread must call:
+
+osYield();
+
+to voluntarily request a context switch.
+
+Design Idea
+
+Instead of performing a direct context switch inside osYield(), the system leverages the SysTick exception mechanism to reuse the existing interrupt-based scheduling flow.
+
+This ensures:
+
+consistent context switch handling inside ISR context
+reuse of SysTick handler logic
+minimal duplication of scheduler code
+Implementation of osYield()
+
+The function forces a context switch by triggering the SysTick exception in software.
+
+Step 1: Reset SysTick current value
+SysTick->VAL = 0;
+
+This clears the current counter value, ensuring the SysTick timer logic does not delay the interrupt.
+
+Step 2: Pend SysTick exception
+SCB->ICSR |= (1 << 26);  // PENDSTSET
+
+This sets the SysTick pending bit, requesting the SysTick interrupt to be serviced as soon as possible.
+
+Step 3: SysTick interrupt execution
+
+Once the interrupt is taken, the CPU enters:
+
+SysTick_Handler()
+
+Inside this handler, the scheduler performs:
+
+saving the current thread context
+selecting the next ready thread
+restoring the next thread context
+Execution Flow
+Thread calls osYield()
+        ↓
+SysTick set to pending (ICSR.PENDSTSET)
+        ↓
+CPU enters SysTick_Handler()
+        ↓
+Scheduler runs
+        ↓
+Context switch occurs
+Key Point
+
+osYield() does not perform a context switch directly.
+It requests a context switch by triggering the SysTick exception, and the actual scheduling happens inside the SysTick ISR.
