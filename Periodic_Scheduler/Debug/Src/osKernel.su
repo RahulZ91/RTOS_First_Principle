@@ -1,0 +1,9 @@
+F:/Knowledge_Update/workspace_1.19.0/RTOS_FirstPrinciple/led_driver/Driver/CMSIS/Include/core_cm4.h:1814:22:__NVIC_SetPriority	16	static
+../Src/osKernel.c:43:6:osKernelStackInit	16	static
+../Src/osKernel.c:66:9:osKernelAddThreads	24	static,ignoring_inline_asm
+../Src/osKernel.c:99:6:osKernelInit	4	static
+../Src/osKernel.c:104:6:osSchedulerLaunch	4	static,ignoring_inline_asm
+../Src/osKernel.c:140:6:osKernelLaunch	16	static
+../Src/osKernel.c:167:29:SysTick_Handler	0	static,ignoring_inline_asm
+../Src/osKernel.c:206:6:osThreadYeild	4	static
+../Src/osKernel.c:216:6:osScheduler	8	static
