@@ -1,4 +1,18 @@
-The project works on development of a lightweight kernel and explores the different algorithm for a scheduler : round robin, periodic and co-operative scheduling. Other tasks include : development of low level drivers for UART, timebase generation and GPIO, context switch and checking data in registers R0-R12,PC,LR
+This project implements a lightweight embedded kernel on ARM Cortex-M microcontrollers in bare-metal C, focusing on real-time task scheduling and low-level system control.
+
+The kernel explores and implements multiple scheduling strategies, including:
+Round-robin scheduling
+Cooperative scheduling
+Periodic (time-triggered) execution model
+
+Core kernel features include manual context switching and execution control at register level, with explicit saving and restoring of CPU state (R0–R12, LR, PC, and xPSR) to enable deterministic task switching.
+
+In addition, the project includes development of essential low-level drivers and system services:
+UART driver for serial communication and debugging
+SysTick-based timebase generation for scheduling and delays
+GPIO control for basic hardware interaction
+
+The implementation emphasizes real-time behavior, interrupt-driven execution, and understanding of MCU internal architecture, including stack usage, exception handling, and register-level execution flow.
 
 Hardware:
 Board: STM32F446RE Nucleo
