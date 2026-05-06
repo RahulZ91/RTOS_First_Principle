@@ -230,7 +230,7 @@ void timer2_init(void)
 	RCC->APB1ENR |=(1<<0);
 
 	//Set the timer pre-scalar
-	TIM2->PSC=1599;
+	TIM2->PSC=1600-1;
 	//Set the auto reload value
 	TIM2->ARR=10000 - 1;
 

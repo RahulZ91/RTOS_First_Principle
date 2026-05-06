@@ -51,6 +51,8 @@ int main()
 {
 	uart_tx_init();
 
+	timer2_init();  // HW timer init
+
 	// Initialise kernel
 	osKernelInit();
 
@@ -82,4 +84,10 @@ void valve_close(void)
 	printf("Valve close \n\r");
 }
 
+void TIM2_IRQHandler(void)
+{
+	// Clear the interrupt flag
+	TIM2->SR |=~(1<<0);
 
+
+}
