@@ -19,5 +19,8 @@ uint8_t osKernelAddThreads(void (*task0)(void), void (*task1)(void), void (*task
 void osThreadYeild(void);
 void task3(void);
 void timer2_init(void);
+void osSemaphoreInit(int32_t* semaphore,int32_t value);
+void osSemaphoreSet(int32_t* semaphore);
+void osSemaphoreWait(int32_t* sempahore);
 
 #endif /* OSKERNEL_H_ */

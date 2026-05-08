@@ -9,3 +9,6 @@ F:/Knowledge_Update/workspace_1.19.0/RTOS_FirstPrinciple/led_driver/Driver/CMSIS
 ../Src/osKernel.c:206:6:osThreadYeild	1
 ../Src/osKernel.c:216:6:osScheduler	2
 ../Src/osKernel.c:227:6:timer2_init	1
+../Src/osKernel.c:251:6:osSemaphoreInit	1
+../Src/osKernel.c:256:6:osSemaphoreSet	1
+../Src/osKernel.c:263:6:osSemaphoreWait	2

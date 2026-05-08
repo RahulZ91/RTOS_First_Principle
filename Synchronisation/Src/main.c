@@ -6,7 +6,7 @@
 
 #include<stdio.h>
 
-#define QUANTA 10
+#define QUANTA 3
 
 void motor_run(void);
 void motor_stop(void);
@@ -15,6 +15,8 @@ void valve_close(void);
 
 typedef uint32_t TaskProfiler;
 TaskProfiler Task0_Profiler,Task1_Profiler,Task2_Profiler,periodicProfiler; // counter to check if the thread has executed
+
+int32_t semaphore1,semaphore2;
 
 void task3(void)
 {
@@ -35,7 +37,10 @@ void task1(void)
 {
 	while(1)
 	{
+		osSemaphoreWait(&semaphore1);
 		Task1_Profiler++;
+		motor_run();
+		osSemaphoreSet(&semaphore1);
 	}
 }
 
@@ -43,7 +48,9 @@ void task2(void)
 {
 	while(1)
 	{
+		osSemaphoreWait(&semaphore2);
 		Task2_Profiler++;
+		valve_open();
 	}
 }
 
@@ -52,6 +59,10 @@ int main()
 	uart_tx_init();
 
 	timer2_init();  // HW timer init
+
+	// Initialise sempahore
+	osSemaphoreInit(&semaphore1, 1); // active
+	osSemaphoreInit(&semaphore2, 0); // inactive
 
 	// Initialise kernel
 	osKernelInit();

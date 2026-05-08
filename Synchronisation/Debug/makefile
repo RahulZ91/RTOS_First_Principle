@@ -33,34 +33,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Periodic_Scheduler_HW_Timer
+BUILD_ARTIFACT_NAME := Synchronisation
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Periodic_Scheduler_HW_Timer.elf \
+Synchronisation.elf \
 
 MAP_FILES += \
-Periodic_Scheduler_HW_Timer.map \
+Synchronisation.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Periodic_Scheduler_HW_Timer.list \
+Synchronisation.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Periodic_Scheduler_HW_Timer.elf secondary-outputs
+main-build: Synchronisation.elf secondary-outputs
 
 # Tool invocations
-Periodic_Scheduler_HW_Timer.elf Periodic_Scheduler_HW_Timer.map: $(OBJS) $(USER_OBJS) F:\Knowledge_Update\workspace_1.19.0\RTOS_FirstPrinciple\Periodic_Scheduler_HW_Timer\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Periodic_Scheduler_HW_Timer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\Knowledge_Update\workspace_1.19.0\RTOS_FirstPrinciple\Periodic_Scheduler_HW_Timer\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Periodic_Scheduler_HW_Timer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Synchronisation.elf Synchronisation.map: $(OBJS) $(USER_OBJS) F:\Knowledge_Update\workspace_1.19.0\RTOS_FirstPrinciple\Synchronisation\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Synchronisation.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\Knowledge_Update\workspace_1.19.0\RTOS_FirstPrinciple\Synchronisation\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Synchronisation.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +69,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Periodic_Scheduler_HW_Timer.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Periodic_Scheduler_HW_Timer.list"
+Synchronisation.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Synchronisation.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Periodic_Scheduler_HW_Timer.elf Periodic_Scheduler_HW_Timer.list Periodic_Scheduler_HW_Timer.map default.size.stdout
+	-$(RM) Synchronisation.elf Synchronisation.list Synchronisation.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
